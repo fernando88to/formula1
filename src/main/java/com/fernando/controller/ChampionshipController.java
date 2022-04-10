@@ -1,6 +1,8 @@
 package com.fernando.controller;
 
 import com.fernando.domain.Championship;
+import com.fernando.dto.ChampionshipDTO;
+import com.fernando.dto.mapper.ChampionshipMapper;
 import com.fernando.repository.ChampionschipRepository;
 
 import javax.inject.Inject;
@@ -9,6 +11,7 @@ import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.LocalDate;
 
 
 @Path("/championship")
@@ -18,6 +21,8 @@ public class ChampionshipController {
 
     @Inject
     ChampionschipRepository championschipRepository;
+    @Inject
+    ChampionshipMapper championshipMapper;
 
     @GET
     @Path("/")
@@ -50,5 +55,19 @@ public class ChampionshipController {
         championship.year = 2018;
         championship.id = 1l;
         return championship;
+    }
+
+    @GET
+    @Path("/teste")
+    public ChampionshipDTO teste(){
+        Championship championship = new Championship();
+        championship.year = 2018;
+        championship.id = 1l;
+        championship.startDate = LocalDate.now();
+        championship.endDate = LocalDate.now();
+        ChampionshipDTO championshipDTO = championshipMapper.toDto(championship);
+        return championshipDTO;
+
+
     }
 }
