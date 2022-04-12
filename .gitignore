@@ -1,6 +1,8 @@
+#### gitingore backend
+
 # Gradle
-.gradle/
-build/
+back-end-quarkus/back-end-quarkus/.gradle/
+back-end-quarkus/build/
 
 # Eclipse
 .project
@@ -34,3 +36,44 @@ nb-configuration.xml
 
 # Local environment
 .env
+
+#### gitingore front-end
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+front-end-nextjs/node_modules
+front-end-nextjs/.pnp
+front-end-nextjs/.pnp.js
+
+# testing
+front-end-nextjs/coverage
+
+# next.js
+front-end-nextjs/.next/
+front-end-nextjs/out/
+
+# production
+front-end-nextjs/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+front-end-nextjs/npm-debug.log*
+front-end-nextjs/yarn-debug.log*
+front-end-nextjs/yarn-error.log*
+front-end-nextjs/.pnpm-debug.log*
+
+# local env files
+front-end-nextjs/.env*.local
+
+# vercel
+front-end-nextjs/.vercel
+
+# typescript
+front-end-nextjs/*.tsbuildinfo
+
+
+
+
