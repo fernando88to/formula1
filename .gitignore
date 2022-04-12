@@ -1,7 +1,7 @@
 #### gitingore backend
 
 # Gradle
-back-end-quarkus/back-end-quarkus/.gradle/
+back-end-quarkus/back-end-quarkus/.gradle
 back-end-quarkus/build/
 
 # Eclipse
