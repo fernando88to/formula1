@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: gvenzl/oracle-xe:18-slim
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: 123456
+      APP_USER: useroracle
+      APP_USER_PASSWORD: 123456
+    volumes:
+      - oracle-volume-db:/opt/oracle/oradata
+    networks:
+      - default
+
+volumes:
+  oracle-volume-db:
+
+networks:
+  default:
+    driver: bridge

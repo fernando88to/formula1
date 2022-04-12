@@ -4,6 +4,7 @@ import com.fernando.domain.Championship;
 import com.fernando.dto.ChampionshipDTO;
 import com.fernando.dto.mapper.ChampionshipMapper;
 import com.fernando.repository.ChampionschipRepository;
+import io.quarkus.panache.common.Sort;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -12,6 +13,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Path("/championship")
@@ -69,5 +72,13 @@ public class ChampionshipController {
         return championshipDTO;
 
 
+    }
+    @GET()
+    @Path("/list")
+    public List<ChampionshipDTO> list(){
+        return championschipRepository.listAll(Sort.by("year").descending())
+                .stream()
+                .map( c -> championshipMapper.toDto(c))
+                .collect(Collectors.toList());
     }
 }
