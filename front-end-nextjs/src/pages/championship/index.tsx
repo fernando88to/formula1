@@ -22,11 +22,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     return (
         <div>
             <h1>Championship Home</h1>
-
             {carregando && <p>Carregando...</p>}
-
-
-
             {!carregando && <ul>
                 {championshipList.map((championship) => (
                     <li key={championship.id}>
