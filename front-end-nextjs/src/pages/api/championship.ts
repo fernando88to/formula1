@@ -2,10 +2,18 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
 import Championship from "../../types/Championship";
 
-export default function handler(
+
+function wait(timeout:number) {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout);
+    });
+}
+
+export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Championship[]>
 ) {
+    await wait(5000);
     let response: Championship[] = [];
     response.push({id: 1, year: 2020});
     response.push({id: 2, year: 2022});

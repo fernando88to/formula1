@@ -5,7 +5,9 @@ import com.fernando.dto.ChampionshipDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
-@Mapper(config = QuarkusMappingConfig.class)
+@Mapper(config = QuarkusMappingConfig.class,
+        unmappedSourcePolicy = org.mapstruct.ReportingPolicy.IGNORE,
+        unmappedTargetPolicy = org.mapstruct.ReportingPolicy.IGNORE)
 public interface ChampionshipMapper {
 
     public Championship toEntity(ChampionshipDTO championship);
