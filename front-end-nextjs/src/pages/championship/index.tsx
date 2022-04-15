@@ -1,7 +1,7 @@
 import {GetServerSideProps, NextPage} from "next";
 import Championship from "../../types/Championship";
 import {useEffect, useState} from "react";
-import  http from "../../http";
+import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
 
 interface MyProps {
     list: Championship[];
@@ -15,8 +15,8 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }, []);
 
     async function load(){
-        const response = await http.get('/championship/list');
-        setChampionshipList(response.data);
+        const response = await  ChampionshipEndpoint.getAll();
+        setChampionshipList(response);
         setCarregando(false);
     }
     return (
