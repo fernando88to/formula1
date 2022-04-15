@@ -1,6 +1,6 @@
 import {GetServerSideProps, NextPage} from "next";
 import Championship from "../../types/Championship";
-import {useEffect, useState} from "react";
+import {FormEvent,  useEffect, useState} from "react";
 import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
 
 interface MyProps {
@@ -9,6 +9,7 @@ interface MyProps {
 const ChampionshipHome: NextPage<MyProps> = ({}) => {
     const [carregando, setCarregando] = useState(true);
     const [championshipList, setChampionshipList] = useState([] as Championship[]);
+    const [year, setYear] = useState('');
 
     useEffect( () => {
         load()
@@ -19,6 +20,14 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
         setChampionshipList(response);
         setCarregando(false);
     }
+    const handleSubmit = (event:FormEvent) => {
+        event.preventDefault();
+        console.log(year);
+    }
+    const handlerChangeYear = (event: FormEvent<HTMLInputElement>) => {
+        setYear(event.currentTarget.value);
+    }
+
     return (
         <div>
             <h1>Championship Home</h1>
@@ -30,6 +39,16 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
                     </li>
                 ))}
             </ul>}
+            <br />
+            <br />
+            <h5>Create new Championship</h5>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    Year:
+                    <input type="text" name="year" onChange={handlerChangeYear} />
+                </label>
+                <button type="submit" >Submit</button>
+            </form>
 
         </div>
     );
