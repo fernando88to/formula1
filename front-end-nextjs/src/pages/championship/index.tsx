@@ -15,7 +15,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }, []);
 
     async function load(){
-        const response = await http.get('/championship');
+        const response = await http.get('/championship/list');
         setChampionshipList(response.data);
         setCarregando(false);
     }
