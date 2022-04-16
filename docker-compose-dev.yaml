@@ -4,6 +4,7 @@ services:
 
   db:
     image: gvenzl/oracle-xe:18-slim
+    container_name: db_oracle
     ports:
       - "1521:1521"
     environment:
@@ -15,8 +16,31 @@ services:
     networks:
       - default
 
+  backend:
+    container_name: backend
+    build:
+      context: back-end-quarkus
+      dockerfile: Dockerfiledev
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    working_dir: /back-end-quarkus
+    volumes:
+      - ./back-end-quarkus:/back-end-quarkus
+      - cache_gradle:/home/appuser/.gradle
+
+    networks:
+      - default
+    depends_on:
+      - db
+    entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0
+    #entrypoint: ./gradlew quarkusDev -DdebugHost=0.0.0.0
+    #tty: true
+
 volumes:
   oracle-volume-db:
+  cache_gradle:
+    driver: local
 
 networks:
   default:
