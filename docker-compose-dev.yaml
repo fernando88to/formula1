@@ -28,7 +28,6 @@ services:
     volumes:
       - ./back-end-quarkus:/back-end-quarkus
       - cache_gradle:/home/appuser/.gradle
-
     networks:
       - default
     depends_on:

@@ -20,3 +20,11 @@ npx create-next-app@latest front-end-nextjs --ts
 ```
 docker-compose -f docker-compose-dev.yaml up --build 
 ```
+
+
+
+### Run the application in production mode
+
+```
+docker-compose up --build 
+```
