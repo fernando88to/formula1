@@ -33,9 +33,31 @@ services:
       - default
     depends_on:
       - db
+      - frontend
     entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0
     #entrypoint: ./gradlew quarkusDev -DdebugHost=0.0.0.0
-    #tty: true
+
+
+  frontend:
+    container_name: frontend
+    build:
+      context: front-end-nextjs
+      dockerfile: Dockerfiledev
+    ports:
+      - "3000:3000"
+    working_dir: /front-end-nextjs
+    volumes:
+      - ./front-end-nextjs:/front-end-nextjs
+      - /front-end-nextjs/node_modules
+      - /front-end-nextjs/.next
+    networks:
+      - default
+    depends_on:
+      - db
+    entrypoint: yarn dev
+
+
+
 
 volumes:
   oracle-volume-db:
