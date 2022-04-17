@@ -3,6 +3,7 @@ version: "3.9"
 services:
   database:
     image: gvenzl/oracle-xe:18-slim
+    container_name: db_oracle
     hostname: db_oracle
     ports:
       - "1521:1521"
@@ -14,6 +15,10 @@ services:
       - oracle-volume-database:/opt/oracle/oradata
     networks:
       - default
+    healthcheck:
+      test: [ "CMD", "/opt/oracle/healthcheck.sh" ]
+      interval: 5s
+
 
   nginx:
     image: nginx:1.17.9
@@ -34,12 +39,12 @@ services:
     ports:
       - "3000:3000"
     container_name: frontend
-#    depends_on:
-#      - nginx
-#      - database
+    depends_on:
+      - nginx
+      - database
 
 
-    tty: true
+#    tty: true
 #    deploy:
 #      resources:
 #        limits:
@@ -58,9 +63,9 @@ services:
     networks:
       - default
     depends_on:
-      - database
-      - nginx
-      - frontend
+      database:
+        condition: service_healthy
+
 
 
 
