@@ -22,13 +22,15 @@ services:
 
   nginx:
     image: nginx:1.17.9
+    container_name: proxy_load_balancer
     ports:
       - "80:80"
-    #volumes:
-      #- .nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      #- ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    volumes:
+      #- ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - database
+      - frontend
+      - backend
     networks:
       - default
 
@@ -36,21 +38,11 @@ services:
     build:
       context: front-end-nextjs
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     container_name: frontend
     depends_on:
-      - nginx
-      - database
+      database:
+          condition: service_healthy
 
-
-#    tty: true
-#    deploy:
-#      resources:
-#        limits:
-#          memory: 768M
-#        reservations:
-#          memory: 128M
 
 
   backend:
@@ -58,13 +50,12 @@ services:
     build:
       context: back-end-quarkus
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     networks:
       - default
     depends_on:
       database:
         condition: service_healthy
+
 
 
 
