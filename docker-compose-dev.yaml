@@ -39,9 +39,9 @@ services:
     build:
       context: back-end-quarkus
       dockerfile: Dockerfiledev
-#    ports:
+    ports:
+      - "5005:5005" # for debugging
 #      - "8080:8080"
-#      - "5005:5005"
     working_dir: /back-end-quarkus
     volumes:
       - ./back-end-quarkus:/back-end-quarkus
@@ -50,7 +50,7 @@ services:
       - default
     entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0 --no-daemon
     #entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0
-    #entrypoint: ./gradlew quarkusDev -DdebugHost=0.0.0.0
+    #entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0 -DdebugHost=0.0.0.0 --no-daemon
     depends_on:
       database_dev:
         condition: service_healthy
