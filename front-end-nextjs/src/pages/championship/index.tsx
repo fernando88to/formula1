@@ -1,26 +1,29 @@
 import {GetServerSideProps, NextPage} from "next";
 import Championship from "../../types/Championship";
-import {FormEvent,  useEffect, useState} from "react";
+import {FormEvent, useEffect, useState} from "react";
 import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
+import {Layout} from "../../components/Layout";
 
 interface MyProps {
     list: Championship[];
 }
+
 const ChampionshipHome: NextPage<MyProps> = ({}) => {
     const [carregando, setCarregando] = useState(true);
     const [championshipList, setChampionshipList] = useState([] as Championship[]);
     const [year, setYear] = useState('');
 
-    useEffect( () => {
+    useEffect(() => {
         load()
     }, []);
 
-    async function load(){
-        const response = await  ChampionshipEndpoint.getAll();
+    async function load() {
+        const response = await ChampionshipEndpoint.getAll();
         setChampionshipList(response);
         setCarregando(false);
     }
-    const handleSubmit = (event:FormEvent) => {
+
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         console.log(year);
     }
@@ -29,7 +32,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }
 
     return (
-        <div>
+        <Layout>
             <h1>Championship Home2</h1>
             {carregando && <p>Carregando...</p>}
             {!carregando && <ul>
@@ -39,18 +42,18 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
                     </li>
                 ))}
             </ul>}
-            <br />
-            <br />
+            <br/>
+            <br/>
             <h5>Create new Championship</h5>
             <form onSubmit={handleSubmit}>
                 <label>
                     Year:
-                    <input type="text" name="year" onChange={handlerChangeYear} />
+                    <input type="text" name="year" onChange={handlerChangeYear}/>
                 </label>
-                <button type="submit" >Submit</button>
+                <button type="submit">Submit</button>
             </form>
 
-        </div>
+        </Layout>
     );
 };
 
@@ -60,19 +63,17 @@ export default ChampionshipHome;
 export const getServerSideProps: GetServerSideProps = async () => {
 
 
-/*
-    let list: Championship[] = [];
-    list.push({id: 1, year: 2022});
-    list.push({id: 2, year: 2022});
-    return {
-        props: {
-            list: list
-        },
-    };*/
+    /*
+        let list: Championship[] = [];
+        list.push({id: 1, year: 2022});
+        list.push({id: 2, year: 2022});
+        return {
+            props: {
+                list: list
+            },
+        };*/
 
     return {
-        props: {
-
-        },
+        props: {},
     };
 };
