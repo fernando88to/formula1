@@ -8,8 +8,7 @@ import Link from "next/link";*/
 
 const Home: NextPage = () => {
     return (
-        <Layout>
-            <h5>Hellow</h5>
+        <Layout titulo='Início' >
         </Layout>
     )
 }
