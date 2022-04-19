@@ -1,4 +1,6 @@
-### Steps to create a new project with quarkus
+### Stydy Project with quarkus (backend), nextjs (frontend) and nginx with api gateway/load balancer. ( in progress) 
+
+### Steps to create a new project with quarkus 
 
 https://quarkus.io/
 

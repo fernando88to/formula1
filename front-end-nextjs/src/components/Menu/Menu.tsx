@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 
-export const Menu = (props: PropsMenu) => {
+export const Menu = () => {
     return (
         <div>
             <h5>Menu</h5>
