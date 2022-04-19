@@ -48,7 +48,8 @@ services:
       - cache_gradle_dev:/home/appuser/.gradle
     networks:
       - default
-    entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0
+    entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0 --no-daemon
+    #entrypoint: ./gradlew quarkusDev -Dquarkus.http.host=0.0.0.0
     #entrypoint: ./gradlew quarkusDev -DdebugHost=0.0.0.0
     depends_on:
       database_dev:
