@@ -3,6 +3,7 @@ import Championship from "../../types/Championship";
 import {FormEvent, useEffect, useState} from "react";
 import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
 import {Layout} from "../../components/Layout";
+import style from "./championship.module.css";
 
 interface MyProps {
     list: Championship[];
@@ -32,26 +33,31 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }
 
     return (
-        <Layout titulo='Championship Home' isButtonBack={true}>
+        <Layout titulo='Championship' isButtonBack={true}>
 
-            {carregando && <p>Carregando...</p>}
-            {!carregando && <ul>
-                {championshipList.map((championship) => (
-                    <li key={championship.id}>
-                        {championship.year}
-                    </li>
-                ))}
-            </ul>}
-            <br/>
-            <br/>
-            <h5>Create new Championship</h5>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Year:
-                    <input type="text" name="year" onChange={handlerChangeYear}/>
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+
+            <div className={style.championship_container}>
+                <h5>Create new Championship</h5>
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="year">Year: </label>
+                    <input type="text" name="year" id="year" onChange={handlerChangeYear}/>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <h5>Listing</h5>
+                {carregando && <p>Carregando...</p>}
+                {!carregando && <ul>
+                    {championshipList.map((championship) => (
+                        <li key={championship.id}>
+                            {championship.year}
+                        </li>
+                    ))}
+                </ul>}
+                <br/>
+                <br/>
+            </div>
+
+
 
         </Layout>
     );
