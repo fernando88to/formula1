@@ -6,11 +6,12 @@ interface PropTypes {
     // or ReactNode permit all
   children: React.ReactNode;
   titulo: string,
+   isButtonBack?: boolean
 }
 export const Layout = ( props: PropTypes) => {
     return (
         <div className={style.layout}>
-            <Menu></Menu>
+            <Menu isButtonBack={props.isButtonBack}></Menu>
             <h1>{props.titulo}</h1>
             {props.children}
         </div>

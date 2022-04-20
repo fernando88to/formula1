@@ -32,7 +32,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }
 
     return (
-        <Layout titulo='Championship Home'>
+        <Layout titulo='Championship Home' isButtonBack={true}>
 
             {carregando && <p>Carregando...</p>}
             {!carregando && <ul>

@@ -3,8 +3,12 @@ import style from "./Menu.module.css";
 import {useState} from "react";
 
 
-export const Menu = () => {
-    const [isButtonBack, setIsButtonBack] = useState(false);
+interface PropsMenu {
+    isButtonBack?: boolean;
+}
+
+export const Menu = (props:PropsMenu) => {
+
 
     return (
         <div className={style.menu}>
@@ -12,7 +16,7 @@ export const Menu = () => {
                 <button className={style.mybutton}>Championship</button>
             </Link>
 
-            {isButtonBack && <Link href="/">
+            {props.isButtonBack && <Link href="/">
                 <button className={style.mybutton}>Back</button>
             </Link>}
 
