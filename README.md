@@ -30,3 +30,10 @@ docker-compose -f docker-compose-dev.yaml up --build
 ```
 docker-compose up --build 
 ```
+
+
+### Layout 
+
+https://github.com/frontendfunn/bootstrap-5-admin-dashboard-template
+
+Install bootstrap 5 and bootstrap icons
