@@ -8,9 +8,17 @@ import Link from "next/link";*/
 
 const Home: NextPage = () => {
     return (
-        <Layout titulo='Início' >
-        </Layout>
+        <></>
     )
 }
 
 export default Home
+export const getServerSideProps = async () => {
+    return {
+        redirect: {
+            permanent: false,
+            destination: '/championship'
+        }
+    }
+
+}
