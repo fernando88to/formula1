@@ -1,4 +1,5 @@
-export default  interface Championship {
-    id: number;
-    year: number;
+import {DomainBase} from "./DomainBase";
+
+export default  interface Championship extends DomainBase{
+    year?: number;
 }
