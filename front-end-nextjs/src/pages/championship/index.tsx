@@ -2,8 +2,7 @@ import {GetServerSideProps, NextPage} from "next";
 import Championship from "../../types/Championship";
 import {FormEvent, useEffect, useState} from "react";
 import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
-import {Layout} from "../../components/Layout";
-import style from "./championship.module.css";
+import {LayoutBootstrap} from "../../components/LayoutBootstrap/LayoutBootstrap";
 
 interface MyProps {
     list: Championship[];
@@ -33,33 +32,10 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     }
 
     return (
-        <Layout titulo='Championship' isButtonBack={true}>
+        <LayoutBootstrap title="ChampionShip List">
 
+        </LayoutBootstrap>
 
-            <div className={style.championship_container}>
-                <h5>Create new Championship</h5>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="year">Year: </label>
-                    <input type="text" name="year" id="year" onChange={handlerChangeYear}/>
-                    <button type="submit">Submit</button>
-                </form>
-
-                <h5>Listing</h5>
-                {carregando && <p>Carregando...</p>}
-                {!carregando && <ul>
-                    {championshipList.map((championship) => (
-                        <li key={championship.id}>
-                            {championship.year}
-                        </li>
-                    ))}
-                </ul>}
-                <br/>
-                <br/>
-            </div>
-
-
-
-        </Layout>
     );
 };
 
@@ -67,17 +43,6 @@ export default ChampionshipHome;
 
 
 export const getServerSideProps: GetServerSideProps = async () => {
-
-
-    /*
-        let list: Championship[] = [];
-        list.push({id: 1, year: 2022});
-        list.push({id: 2, year: 2022});
-        return {
-            props: {
-                list: list
-            },
-        };*/
 
     return {
         props: {},
