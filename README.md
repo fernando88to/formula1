@@ -6,7 +6,8 @@ https://quarkus.io/
 
 Extesion selected:
 
-flyway, hibernate-orm, hibernate-orm-panache, hibernate-validator, jdbc-oracle, resteasy, resteasy-jsonb
+flyway, hibernate-orm, hibernate-orm-panache, hibernate-validator, jdbc-oracle, resteasy, resteasy-jsonb,
+quarkus-smallrye-openapi
 
 
 ### Steps to create a new project with nextjs

@@ -32,14 +32,14 @@ public class ChampionshipController {
 
     @GET
     @Path("/")
-    public Championship get(){
+    public ChampionshipDTO get(){
         Championship championship = new Championship();
         championship.year = 2018;
         championship.id = 1l;
-        return championship;
+        return championshipMapper.toDto(championship);
     }
 
-    @POST
+  /*  @POST
     @Path("/")
     @Transactional
     public Response save(@Valid Championship championship){
@@ -51,9 +51,9 @@ public class ChampionshipController {
         }
 
 
-    }
+    }*/
 
-    @GET
+   /* @GET
     @Path("/erro")
     public Championship get2(){
 
@@ -61,9 +61,9 @@ public class ChampionshipController {
         championship.year = 2018;
         championship.id = 1l;
         return championship;
-    }
+    }*/
 
-    @GET
+   /* @GET
     @Path("/teste")
     public ChampionshipDTO teste(){
         Championship championship = new Championship();
@@ -75,7 +75,7 @@ public class ChampionshipController {
         return championshipDTO;
 
 
-    }
+    }*/
    /* @GET()
     @Path("/list")
     public List<ChampionshipDTO> list() {
@@ -85,7 +85,7 @@ public class ChampionshipController {
                 .collect(Collectors.toList());
 
     }*/
-        @GET()
+/*        @GET()
         @Path("/list2")
         public List<ChampionshipDTO> list2(@QueryParam("page") int page, @QueryParam("size") int size){
             PanacheQuery<Championship> queryAll = championschipRepository.findAll();
@@ -93,8 +93,8 @@ public class ChampionshipController {
             return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
 
 
-        }
-    @GET()
+        }*/
+/*    @GET()
     @Path("/list3")
     public List<ChampionshipDTO> list2(@BeanParam PageRequest pageRequest){
         PanacheQuery<Championship> queryAll = championschipRepository.findAll();
@@ -102,7 +102,7 @@ public class ChampionshipController {
         return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
 
 
-    }
+    }*/
 
     @GET()
     @Path("/list")
