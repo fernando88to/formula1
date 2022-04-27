@@ -37,3 +37,8 @@ docker-compose up --build
 https://github.com/frontendfunn/bootstrap-5-admin-dashboard-template
 
 Install bootstrap 5 and bootstrap icons
+
+
+### Exemples 
+
+- https://github.com/marcuspaulo/quarkus-panache-car/blob/master/src/main/java/br/com/car/resource/CarV2Resource.java

@@ -1,9 +1,12 @@
 package com.fernando.controller;
 
+import com.fernando.controller.api.suport.PageRequest;
 import com.fernando.domain.Championship;
 import com.fernando.dto.ChampionshipDTO;
 import com.fernando.dto.mapper.ChampionshipMapper;
 import com.fernando.repository.ChampionschipRepository;
+import io.quarkus.hibernate.orm.panache.PanacheQuery;
+import io.quarkus.panache.common.Page;
 import io.quarkus.panache.common.Sort;
 
 import javax.inject.Inject;
@@ -73,12 +76,40 @@ public class ChampionshipController {
 
 
     }
-    @GET()
+   /* @GET()
     @Path("/list")
-    public List<ChampionshipDTO> list(){
+    public List<ChampionshipDTO> list() {
         return championschipRepository.listAll(Sort.by("year").descending())
                 .stream()
-                .map( c -> championshipMapper.toDto(c))
+                .map(c -> championshipMapper.toDto(c))
                 .collect(Collectors.toList());
+
+    }*/
+        @GET()
+        @Path("/list2")
+        public List<ChampionshipDTO> list2(@QueryParam("page") int page, @QueryParam("size") int size){
+            PanacheQuery<Championship> queryAll = championschipRepository.findAll();
+            List<Championship> championshipList = queryAll.page(Page.of(page, size)).list();
+            return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
+
+
+        }
+    @GET()
+    @Path("/list3")
+    public List<ChampionshipDTO> list2(@BeanParam PageRequest pageRequest){
+        PanacheQuery<Championship> queryAll = championschipRepository.findAll();
+        List<Championship> championshipList = queryAll.page(Page.of(pageRequest.page, pageRequest.size)).list();
+        return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
+
+
+    }
+
+    @GET()
+    @Path("/list")
+    public List<ChampionshipDTO> list(@BeanParam PageRequest pageRequest) {
+        PanacheQuery<Championship> queryAll = championschipRepository.findAll();
+        List<Championship> championshipList = queryAll.page(Page.of(pageRequest.page, pageRequest.size)).list();
+        return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
+
     }
 }
