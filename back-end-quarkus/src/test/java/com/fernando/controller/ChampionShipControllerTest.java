@@ -1,6 +1,7 @@
 package com.fernando.controller;
 
 
+import com.fernando.dto.ChampionshipDTO;
 import io.quarkus.test.junit.QuarkusTest;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Example of tests in https://github.com/quarkusio/quarkus-quickstarts/blob/main/hibernate-reactive-quickstart/src/test/java/org/acme/hibernate/reactive/FruitsEndpointTest.java
@@ -25,12 +27,18 @@ class ChampionShipControllerTest {
     @Test
     @DisplayName("Testar o method de listagem executado com sucesso")
     public void list() {
-        given()
+        ChampionshipDTO[] championshipDTOS = given()
                 .when()
                 .get("/v1/championship/list")
                 .then()
                 .statusCode(HttpStatus.SC_OK)
-                .body(null);
+                .extract()
+                .response()
+                .body()
+                .as(ChampionshipDTO[].class);
+        assertEquals(championshipDTOS.length, 3);
+
+
     }
 
     @Test
