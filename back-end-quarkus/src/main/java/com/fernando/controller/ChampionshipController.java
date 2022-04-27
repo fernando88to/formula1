@@ -7,15 +7,10 @@ import com.fernando.dto.mapper.ChampionshipMapper;
 import com.fernando.repository.ChampionschipRepository;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
 import io.quarkus.panache.common.Page;
-import io.quarkus.panache.common.Sort;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
