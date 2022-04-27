@@ -32,6 +32,12 @@ docker-compose -f docker-compose-dev.yaml up --build
 docker-compose up --build 
 ```
 
+### Run the test of the backend and coverage
+
+```
+docker exec -it backend_dev bash
+./gradlew test
+```
 
 ### Layout 
 

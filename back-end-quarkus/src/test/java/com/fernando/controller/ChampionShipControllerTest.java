@@ -24,7 +24,7 @@ class ChampionShipControllerTest {
     public void get() {
         //String path = contextPath + "/championship";
         given()
-                .when().get("/championship")
+                .when().get("/v1/championship")
                 .then()
                 .statusCode(200)
                 .body(
