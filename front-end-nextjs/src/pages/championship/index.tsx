@@ -3,6 +3,8 @@ import Championship from "../../types/Championship";
 import {FormEvent, useEffect, useState} from "react";
 import ChampionshipEndpoint from "../../endpoints/ChampionshipEndpoint";
 import {LayoutBootstrap} from "../../components/LayoutBootstrap/LayoutBootstrap";
+import {CardPage} from "../../components/LayoutBootstrap/CardPage";
+import {Table} from "../../components/LayoutBootstrap/Table";
 
 interface MyProps {
     list: Championship[];
@@ -11,7 +13,9 @@ interface MyProps {
 const ChampionshipHome: NextPage<MyProps> = ({}) => {
     const [carregando, setCarregando] = useState(true);
     const [championshipList, setChampionshipList] = useState([] as Championship[]);
+    const [championshipSelected, setChampionshipSelected] = useState(null as Championship | null);
     const [year, setYear] = useState('');
+    const fields  = [{field:'id', headerName:'ID'},{field:'year', headerName:'Year'}];
 
     useEffect(() => {
         load()
@@ -33,6 +37,12 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
 
     return (
         <LayoutBootstrap title="ChampionShip List">
+            <CardPage title="Championship">
+                <Table
+                        columns={fields}
+                        rows={championshipList}
+                />
+            </CardPage>
 
         </LayoutBootstrap>
 

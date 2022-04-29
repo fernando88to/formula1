@@ -36,7 +36,7 @@ const TestePage: NextPage = () => {
             </div>
 
 
-            <CardPage title="Table">
+            <CardPage title="TableOld">
                 <div>
                     <div id="example_wrapper" className="dataTables_wrapper dt-bootstrap5">
                         <div className="row">
