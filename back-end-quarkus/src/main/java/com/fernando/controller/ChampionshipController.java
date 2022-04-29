@@ -1,5 +1,6 @@
 package com.fernando.controller;
 
+import com.fernando.controller.api.suport.HEADER;
 import com.fernando.controller.api.suport.PageRequest;
 import com.fernando.domain.Championship;
 import com.fernando.dto.ChampionshipDTO;
@@ -11,6 +12,7 @@ import io.quarkus.panache.common.Page;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -101,10 +103,10 @@ public class ChampionshipController {
 
     @GET()
     @Path("/list")
-    public List<ChampionshipDTO> list(@BeanParam PageRequest pageRequest) {
+    public Response list(@BeanParam PageRequest pageRequest) {
         PanacheQuery<Championship> queryAll = championschipRepository.findAll();
         List<Championship> championshipList = queryAll.page(Page.of(pageRequest.page, pageRequest.size)).list();
-        return championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
-
+        List<ChampionshipDTO> championshipDTOList = championshipList.stream().map(c -> championshipMapper.toDto(c)).collect(Collectors.toList());
+        return Response.ok(championshipDTOList).header(HEADER.PARAM_SIZE, 15).build();
     }
 }
