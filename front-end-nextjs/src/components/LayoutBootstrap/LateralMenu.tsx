@@ -1,7 +1,9 @@
-interface Props  {
+import Link from "next/link";
+
+interface Props {
 
 };
-export const  LateralMenu = (props: Props) => {
+export const LateralMenu = (props: Props) => {
     return (
         <div className="offcanvas offcanvas-start sidebar-nav bg-dark" tabIndex={-1} id="sidebar">
             <div className="offcanvas-body p-0">
@@ -13,66 +15,31 @@ export const  LateralMenu = (props: Props) => {
                             </div>
                         </li>
                         <li>
-                            <a href="src/components/LayoutBootstrap/LateralMenu#" className="nav-link px-3 active">
-                                <span className="me-2"><i className="bi bi-speedometer2"></i></span>
-                                <span>Dashboard</span>
-                            </a>
+                            <Link href="/">
+                                <a className="nav-link px-3 active">
+                                    <span className="me-2"><i className="bi bi-speedometer2"></i></span>
+                                    <span>Dashboard</span>
+                                </a>
+
+                            </Link>
+
                         </li>
                         <li className="my-4">
                             <hr className="dropdown-divider bg-light"/>
                         </li>
                         <li>
                             <div className="text-muted small fw-bold text-uppercase px-3 mb-3">
-                                Interface
+                                Other Options
                             </div>
                         </li>
+
                         <li>
-                            <a className="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="src/components/LayoutBootstrap/LateralMenu#layouts"
-                               aria-expanded="true">
-                                <span className="me-2"><i className="bi bi-layout-split"></i></span>
-                                <span>Layouts</span>
-                                <span className="ms-auto">
-                  <span className="right-icon">
-                    <i className="bi bi-chevron-down"></i>
-                  </span>
-                </span>
-                            </a>
-                            <div className="collapse show" id="layouts" >
-                                <ul className="navbar-nav ps-3">
-                                    <li>
-                                        <a href="src/components/LayoutBootstrap/LateralMenu#" className="nav-link px-3">
-                                            <span className="me-2"><i className="bi bi-speedometer2"></i></span>
-                                            <span>Dashboard</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="src/components/LayoutBootstrap/LateralMenu#" className="nav-link px-3">
-                                <span className="me-2"><i className="bi bi-book-fill"></i></span>
-                                <span>Pages</span>
-                            </a>
-                        </li>
-                        <li className="my-4">
-                            <hr className="dropdown-divider bg-light"/>
-                        </li>
-                        <li>
-                            <div className="text-muted small fw-bold text-uppercase px-3 mb-3">
-                                Addons
-                            </div>
-                        </li>
-                        <li>
-                            <a href="src/components/LayoutBootstrap/LateralMenu#" className="nav-link px-3">
-                                <span className="me-2"><i className="bi bi-graph-up"></i></span>
-                                <span>Charts</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="src/components/LayoutBootstrap/LateralMenu#" className="nav-link px-3">
-                                <span className="me-2"><i className="bi bi-table"></i></span>
-                                <span>Tables</span>
-                            </a>
+                            <Link href="/championship" >
+                                <a className="nav-link px-3">
+                                    <span className="me-2"><i className="bi bi-book-fill"></i></span>
+                                    <span>Championship</span>
+                                </a>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
