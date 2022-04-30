@@ -14,8 +14,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
     const [carregando, setCarregando] = useState(true);
     const [championshipList, setChampionshipList] = useState([] as Championship[]);
     const [championshipSelected, setChampionshipSelected] = useState(null as Championship | null);
-    const [year, setYear] = useState('');
-    const fields  = [{field:'id', headerName:'ID'},{field:'year', headerName:'Year'}];
+    const fields = [{field: 'id', headerName: 'ID'}, {field: 'year', headerName: 'Year'}];
 
     useEffect(() => {
         load()
@@ -27,21 +26,35 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
         setCarregando(false);
     }
 
-  /*  const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
-        console.log(year);
+    const itemSelected = (key: any) => {
+        const championshipSelected = key as Championship;
+        setChampionshipSelected(championshipSelected);
+        //console.log(championshipSelected.id + ' ' + championshipSelected.year);
     }
-    const handlerChangeYear = (event: FormEvent<HTMLInputElement>) => {
-        setYear(event.currentTarget.value);
-    }*/
 
     return (
         <LayoutBootstrap title="ChampionShip List">
             <CardPage title="Championship">
+                <form>
+                    <div className="mb-3">
+                        <label htmlFor="id" className="form-label">ID</label>
+                        <input type="number" className="form-control" id="id" autoComplete='off'
+                               readOnly={true} aria-describedby="id" value={championshipSelected?.id}/>
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="year" className="form-label">Year</label>
+                        <input type="number" className="form-control" id="year"
+                               value={championshipSelected?.year}/>
+                    </div>
+
+                </form>
+            </CardPage>
+            <CardPage title="Championship">
                 <Table
-                        columns={fields}
-                        rows={championshipList}
-                        loading={carregando}
+                    columns={fields}
+                    rows={championshipList}
+                    loading={carregando}
+                    itemSelected={itemSelected}
                 />
             </CardPage>
 
@@ -55,7 +68,8 @@ export default ChampionshipHome;
 
 export const getServerSideProps: GetServerSideProps = async () => {
 
-    return {
-        props: {},
-    };
-};
+        return {
+            props: {},
+        };
+    }
+;
