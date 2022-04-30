@@ -1,7 +1,11 @@
+import React from "react";
+import {Spinners} from "./Spinners";
+
 interface Props {
     children?: React.ReactNode,
     columns: Array<Column>,
     rows?: Array<any>,
+    loading: boolean
 
 }
 
@@ -13,7 +17,8 @@ interface Column {
 export const Table = (props: Props) => {
     return (
         <div>
-            <div id="example_wrapper" className="dataTables_wrapper dt-bootstrap5">
+            {props.loading && <Spinners />}
+            {!props.loading &&  <div id="example_wrapper" className="dataTables_wrapper dt-bootstrap5">
                 <div className="row">
                     <div className="col-sm-12">
                         <table id="example"
@@ -54,7 +59,7 @@ export const Table = (props: Props) => {
                     </div>
                 </div>
 
-            </div>
+            </div>}
         </div>
     );
 };

@@ -27,13 +27,13 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
         setCarregando(false);
     }
 
-    const handleSubmit = (event: FormEvent) => {
+  /*  const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         console.log(year);
     }
     const handlerChangeYear = (event: FormEvent<HTMLInputElement>) => {
         setYear(event.currentTarget.value);
-    }
+    }*/
 
     return (
         <LayoutBootstrap title="ChampionShip List">
@@ -41,6 +41,7 @@ const ChampionshipHome: NextPage<MyProps> = ({}) => {
                 <Table
                         columns={fields}
                         rows={championshipList}
+                        loading={carregando}
                 />
             </CardPage>
 
